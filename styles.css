@@ -1,0 +1,11 @@
+:root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.colorFav {
+    background-color: rgb(252, 169, 186);
+    color: rgb(9, 170, 154);
+
+}
