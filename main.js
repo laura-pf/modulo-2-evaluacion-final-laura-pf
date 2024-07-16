@@ -45,9 +45,9 @@ function renderSeries(series, container) {
         }
 
         container.innerHTML += `
-        <div class= "js-containerOneSerie" id="${serie.mal_id}" >
-            <img src="${image}" alt="$${serie.title}"> 
-            <h3>${serie.title}</h3> 
+        <div class= " container__series js-containerOneSerie" id="${serie.mal_id}" >
+            <img class="img" src="${image}" alt="$${serie.title}"> 
+            <h3 class="title__series">${serie.title}</h3> 
         </div>
       ` 
     }

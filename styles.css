@@ -4,15 +4,15 @@
     box-sizing: border-box;
 }
 .body {
-    background-color: black;
+    background-color: white;
 }
 
 
 
 .title__h1{
-    color:aquamarine;
+    color: rgb(241, 49, 145);
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
+    font-weight: 600;
     margin: 30px 20px;
 }
 
@@ -26,21 +26,21 @@
     padding:10px ;
     border-radius: 6px;
     margin-right: 20px;
-    background-color: black;
-    border: 1px solid aquamarine;
-    color: white;
+    background-color: white;
+    border: 3px solid rgb(241, 49, 145);
+    color: rgb(241, 49, 145) ;
     font-size: 20px;
 }
 
 .search__button {
-    background-color: aquamarine;
+    background-color: rgb(241, 49, 145);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
-    color: black;
+    color: white;
     border: none;
     border-radius: 6px;
-    padding: 8px
+    padding: 14px;
    
 }
 .colorFav {
@@ -49,11 +49,50 @@
 
 }
 
+
+   
+   
+    
+   
+.container__titleSeries {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.img {
+    min-width: 100%;
+    min-height:150px ;
+}
+
+.container__series{
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    padding: 10px;
+    margin: 5px
+}
+.title__series{
+    margin-top: 10px;
+    font-size: 16px;
+    color:rgb(241, 49, 145);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title__results {
+    text-align: center;
+    color: rgb(241, 49, 145);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+ 
+
 .section__series {
     display: flex;
     gap:60px;
    
-    flex-direction: row-reverse;
+    flex-direction: row;
 
    
 }
