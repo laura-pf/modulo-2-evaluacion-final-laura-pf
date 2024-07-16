@@ -95,6 +95,8 @@ function handleSearchClick (event){
     event.preventDefault();
     const value = inputSearch.value;
     titleResults.classList.remove("hidden");
+    containerAllSeries.classList.remove("hidden")
+
 
     
   fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
