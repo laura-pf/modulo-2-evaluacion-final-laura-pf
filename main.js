@@ -21,7 +21,14 @@ const notImage = "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.p
 let favoriteSeries = [];
 const containerFavoriteSeries= document.querySelector(".js-containerFavoriteSeries");
 const titleResults = document.querySelector(".js-titleResults");
-const titleFavorite = document.querySelector(".js-titleFav")
+const titleFavorite = document.querySelector(".js-titleFav");
+const seriesFavLocalSotrage = JSON.parse(localStorage.getItem("listFavSeries"))
+
+ if (seriesFavLocalSotrage){
+    titleFavorite.classList.remove("hidden")
+    favoriteSeries = seriesFavLocalSotrage;
+    renderSeries(seriesFavLocalSotrage, containerFavoriteSeries);
+ }
 
 
 
@@ -50,11 +57,12 @@ function renderSeries(series, container) {
    
 }
 
+
+
 function handleClickFavorite (event) {
     const clickFavorite = event.currentTarget;
     clickFavorite.classList.add("colorFav");
-    titleFavorite.classList.remove("hidden");
-
+    titleFavorite.classList.remove("hidden")
 
     const idClickFavorite = parseInt(event.currentTarget.id);
 
@@ -70,15 +78,13 @@ function handleClickFavorite (event) {
     console.log(indexSerieFavorites);
 
     //si no existe como favorita, añado paleta
-
     if(indexSerieFavorites === -1) {
+        
         favoriteSeries.push(serieSelected)
-        renderSeries(favoriteSeries, containerFavoriteSeries)
+        renderSeries(favoriteSeries, containerFavoriteSeries) 
+        localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries))    
 
-    }
-
-
-    
+    } 
 }
 
 
@@ -94,6 +100,8 @@ function handleSearchClick (event){
     .then(data => {
         const series = data.data;
         seriesList = series;
+
+        
         renderSeries(seriesList, containerAllSeries);
     
     }) 
@@ -113,6 +121,8 @@ searchButton.addEventListener("click", handleSearchClick);
   
   
   */
+
+  
    
 
   
