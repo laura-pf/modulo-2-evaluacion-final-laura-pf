@@ -20,12 +20,16 @@ const placeholder = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"
 const notImage = "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 let favoriteSeries = [];
 const containerFavoriteSeries= document.querySelector(".js-containerFavoriteSeries");
+const titleResult = "Resultados"
+const titleFavorite = "Series favoritas"
 
 
 
-function renderSeries(series, container) {
-   for(const serie of series){
+function renderSeries(series, container, title) {
+    container.innerHTML += `
+    <h4>${title}</h4>` 
 
+    for(const serie of series){
         if (serie.images.jpg.image_url === notImage ){
             image = placeholder
 
@@ -33,19 +37,19 @@ function renderSeries(series, container) {
             image = serie.images.jpg.image_url
         }
 
-        container.innerHTML += ` 
+        container.innerHTML += `
         <div class= "js-containerOneSerie" id="${serie.mal_id}" >
-            <h3>${serie.title}</h3>
-            <img src="${image}" alt="$${serie.title}">  
+            <img src="${image}" alt="$${serie.title}"> 
+            <h3>${serie.title}</h3> 
         </div>
       ` 
-    
     }
 
     const containersOneSerie = document.querySelectorAll(".js-containerOneSerie")
     for (const containeroneSerie of containersOneSerie ){
         containeroneSerie.addEventListener("click", handleClickFavorite)
     }
+   
 }
 
 function handleClickFavorite (event) {
@@ -54,14 +58,14 @@ function handleClickFavorite (event) {
 
     const idClickFavorite = parseInt(event.currentTarget.id);
 
-
     const serieSelected = seriesList.find((serie) => {
         return idClickFavorite === serie.mal_id;
         
     })
 
-    favoritesSeries.push(serieSelected)
-    renderSeries(favoriteSeries,containerFavoriteSeries)
+
+    favoriteSeries.push(serieSelected)
+    renderSeries(favoriteSeries,containerFavoriteSeries, titleFavorite)
     
 }
 
@@ -77,7 +81,7 @@ function handleSearchClick (event){
     .then(data => {
         const series = data.data;
         seriesList = series;
-        renderSeries(seriesList, containerAllSeries);
+        renderSeries(seriesList, containerAllSeries, titleResult);
     
     }) 
 

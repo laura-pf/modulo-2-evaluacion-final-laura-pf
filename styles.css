@@ -9,3 +9,10 @@
     color: rgb(9, 170, 154);
 
 }
+
+.section__series {
+    display: flex;
+   
+    flex-direction: row-reverse;
+    gap: 50px
+}
