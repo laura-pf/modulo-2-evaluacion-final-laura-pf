@@ -34,6 +34,8 @@ const seriesFavLocalSotrage = JSON.parse(localStorage.getItem("listFavSeries"))
 
 function renderSeries(series, container) {
 
+  container.innerHTML = '';
+
     for(const serie of series){
         if (serie.images.jpg.image_url === notImage ){
             image = placeholder

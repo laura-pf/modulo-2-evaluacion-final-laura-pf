@@ -1,9 +1,48 @@
-:root {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+.body {
+    background-color: black;
+}
 
+
+
+.title__h1{
+    color:aquamarine;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    margin: 30px 20px;
+}
+
+.form {
+    margin-left: 20px;
+    margin-bottom: 70px;
+}
+
+
+.input__search {
+    padding:10px ;
+    border-radius: 6px;
+    margin-right: 20px;
+    background-color: black;
+    border: 1px solid aquamarine;
+    color: white;
+    font-size: 20px;
+}
+
+.search__button {
+    background-color: aquamarine;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    padding: 8px
+   
+}
 .colorFav {
     background-color: rgb(252, 169, 186);
     color: rgb(9, 170, 154);
