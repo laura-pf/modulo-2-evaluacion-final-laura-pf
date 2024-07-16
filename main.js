@@ -20,14 +20,12 @@ const placeholder = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"
 const notImage = "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 let favoriteSeries = [];
 const containerFavoriteSeries= document.querySelector(".js-containerFavoriteSeries");
-const titleResult = "Resultados"
-const titleFavorite = "Series favoritas"
+const titleResults = document.querySelector(".js-titleResults");
+const titleFavorite = document.querySelector(".js-titleFav")
 
 
 
-function renderSeries(series, container, title) {
-    container.innerHTML += `
-    <h4>${title}</h4>` 
+function renderSeries(series, container) {
 
     for(const serie of series){
         if (serie.images.jpg.image_url === notImage ){
@@ -55,6 +53,8 @@ function renderSeries(series, container, title) {
 function handleClickFavorite (event) {
     const clickFavorite = event.currentTarget;
     clickFavorite.classList.add("colorFav");
+    titleFavorite.classList.remove("hidden");
+
 
     const idClickFavorite = parseInt(event.currentTarget.id);
 
@@ -63,9 +63,21 @@ function handleClickFavorite (event) {
         
     })
 
+    const indexSerieFavorites = favoriteSeries.findIndex((favoriteSerie) => {
+        return idClickFavorite === favoriteSerie.mal_id
+    })
 
-    favoriteSeries.push(serieSelected)
-    renderSeries(favoriteSeries,containerFavoriteSeries, titleFavorite)
+    console.log(indexSerieFavorites);
+
+    //si no existe como favorita, añado paleta
+
+    if(indexSerieFavorites === -1) {
+        favoriteSeries.push(serieSelected)
+        renderSeries(favoriteSeries, containerFavoriteSeries)
+
+    }
+
+
     
 }
 
@@ -74,6 +86,7 @@ function handleClickFavorite (event) {
 function handleSearchClick (event){
     event.preventDefault();
     const value = inputSearch.value;
+    titleResults.classList.remove("hidden");
 
     
   fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
@@ -81,7 +94,7 @@ function handleSearchClick (event){
     .then(data => {
         const series = data.data;
         seriesList = series;
-        renderSeries(seriesList, containerAllSeries, titleResult);
+        renderSeries(seriesList, containerAllSeries);
     
     }) 
 
@@ -101,3 +114,5 @@ searchButton.addEventListener("click", handleSearchClick);
   
   */
    
+
+  

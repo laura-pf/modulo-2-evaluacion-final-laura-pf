@@ -12,7 +12,13 @@
 
 .section__series {
     display: flex;
+    gap:60px;
    
     flex-direction: row-reverse;
-    gap: 50px
+
+   
+}
+
+.hidden {
+    display: none;
 }
