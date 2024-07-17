@@ -129,3 +129,10 @@
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.empty__input {
+    color: rgb(241, 49, 145);
+    font-family: arial;
+    font-size: 30px;
+
+}

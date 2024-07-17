@@ -23,6 +23,7 @@ const containerFavoriteSeries= document.querySelector(".js-containerFavoriteSeri
 const titleResults = document.querySelector(".js-titleResults");
 const titleFavorite = document.querySelector(".js-titleFav");
 const seriesFavLocalSotrage = JSON.parse(localStorage.getItem("listFavSeries"))
+const message = document.querySelector(".js-message")
 
  if (seriesFavLocalSotrage){
     titleFavorite.classList.remove("hidden")
@@ -63,10 +64,13 @@ function renderSeries(series, container) {
 
 
 function handleClickFavorite (event) {
+
+   
     const clickFavorite = event.currentTarget;
     clickFavorite.classList.add("colorFav");
     titleFavorite.classList.remove("hidden")
     containerFavoriteSeries.classList.remove("hidden")
+    
 
     const idClickFavorite = parseInt(event.currentTarget.id);
 
@@ -78,8 +82,6 @@ function handleClickFavorite (event) {
     const indexSerieFavorites = favoriteSeries.findIndex((favoriteSerie) => {
         return idClickFavorite === favoriteSerie.mal_id
     })
-
-    console.log(indexSerieFavorites);
 
     //si no existe como favorita, añado serie
     if(indexSerieFavorites === -1) {
@@ -96,12 +98,14 @@ function handleClickFavorite (event) {
 function handleSearchClick (event){
     event.preventDefault();
     const value = inputSearch.value;
-    titleResults.classList.remove("hidden");
-    containerAllSeries.classList.remove("hidden")
-
-
     
-  fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
+    if(value === '' || !isNaN(value) ){
+        message.innerHTML = `
+        <h2> Por favor, introduce una serie de anime </h2>`
+
+    }else {
+    
+    fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
     .then(response => response.json())
     .then(data => {
         const series = data.data;
@@ -110,7 +114,14 @@ function handleSearchClick (event){
         
         renderSeries(seriesList, containerAllSeries);
     
-    }) 
+    })
+    
+    titleResults.classList.remove("hidden");
+    containerAllSeries.classList.remove("hidden");
+
+}
+
+   
 
 
 }
