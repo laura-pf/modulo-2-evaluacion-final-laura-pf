@@ -52,7 +52,11 @@ function renderSeries(series, container, isFavorite) {
         } " id="${serie.mal_id}" >
             <img class="img" src="${image}" alt="$${serie.title}"> 
             <h3 class="title__series">${serie.title}</h3> 
-            ${isFavorite ? `<button class="close__button">X</button>` : ""}
+            ${
+              isFavorite
+                ? `<button class="close__button js-closeButton">X</button>`
+                : ""
+            }
         </div>
       `;
   }
@@ -60,6 +64,11 @@ function renderSeries(series, container, isFavorite) {
   const containersOneSerie = document.querySelectorAll(".js-containerOneSerie");
   for (const containeroneSerie of containersOneSerie) {
     containeroneSerie.addEventListener("click", handleClickFavorite);
+  }
+
+  const closeButtons = document.querySelectorAll(".js-closeButton");
+  for (const closeButton of closeButtons) {
+    closeButton.addEventListener("click", handleClickClose);
   }
 }
 
@@ -85,6 +94,22 @@ function handleClickFavorite(event) {
     renderSeries(favoriteSeries, containerFavoriteSeries, true);
     localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
   }
+}
+
+/* cuando hago click en el boton x:
+recojo el valor de la serie eliminada
+la elimino de mi array*/
+
+function handleClickClose(event) {
+  const idSerieToRemove = event.target.id;
+
+  const serieIndex = favoriteSeries.findIndex((favSerie) => {
+    return idSerieToRemove === favSerie.mal_id;
+  });
+
+  favoriteSeries.splice(serieIndex, 1);
+
+  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, true);
 }
 
 function handleSearchClick(event) {
