@@ -54,7 +54,7 @@ function renderSeries(series, container, isFavorite) {
             <h3 class="title__series">${serie.title}</h3> 
             ${
               isFavorite
-                ? `<button class="close__button js-closeButton">X</button>`
+                ? `<button id="${serie.mal_id}" class="close__button js-closeButton">X</button>`
                 : ""
             }
         </div>
