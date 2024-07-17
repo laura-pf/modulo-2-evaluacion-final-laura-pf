@@ -32,7 +32,7 @@ if (seriesFavLocalSotrage) {
   titleFavorite.classList.remove("hidden");
   containerFavoriteSeries.classList.remove("hidden");
   favoriteSeries = seriesFavLocalSotrage;
-  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, true);
+  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, false);
 }
 
 function renderSeries(series, container, isFavorite) {
