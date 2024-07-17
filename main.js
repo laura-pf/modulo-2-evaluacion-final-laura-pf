@@ -26,6 +26,7 @@ const seriesFavLocalSotrage = JSON.parse(localStorage.getItem("listFavSeries"))
 
  if (seriesFavLocalSotrage){
     titleFavorite.classList.remove("hidden")
+    containerFavoriteSeries.classList.remove("hidden")
     favoriteSeries = seriesFavLocalSotrage;
     renderSeries(seriesFavLocalSotrage, containerFavoriteSeries);
  }
@@ -65,6 +66,7 @@ function handleClickFavorite (event) {
     const clickFavorite = event.currentTarget;
     clickFavorite.classList.add("colorFav");
     titleFavorite.classList.remove("hidden")
+    containerFavoriteSeries.classList.remove("hidden")
 
     const idClickFavorite = parseInt(event.currentTarget.id);
 
@@ -79,7 +81,7 @@ function handleClickFavorite (event) {
 
     console.log(indexSerieFavorites);
 
-    //si no existe como favorita, añado paleta
+    //si no existe como favorita, añado serie
     if(indexSerieFavorites === -1) {
         
         favoriteSeries.push(serieSelected)
