@@ -24,6 +24,8 @@ const titleResults = document.querySelector(".js-titleResults");
 const titleFavorite = document.querySelector(".js-titleFav");
 const seriesFavLocalSotrage = JSON.parse(localStorage.getItem("listFavSeries"))
 const message = document.querySelector(".js-message")
+const resetButton = document.querySelector (".js-resetButton")
+const form = document.querySelector(".js-form")
 
  if (seriesFavLocalSotrage){
     titleFavorite.classList.remove("hidden")
@@ -129,15 +131,27 @@ function handleSearchClick (event){
 searchButton.addEventListener("click", handleSearchClick);
 
 
-  /*añadir a favoritos 
+/*boton de reset
+cuando la usuaria haga click en reset.
 
-  Cuando la usuaria haga click en una serie, 
-  - saber en cual ha hecho click
-  - cambiar el color de fondo y el de la fuente
-  - mostrar los fav en un listado en la parte izquierda de la pantalla
-  
-  
-  */
+-se eliminan:
+series favoritas
+los resultados
+el input*/
+
+
+function handleClickReset(event) {
+    event.preventDefault();
+    titleResults.classList.add("hidden");
+    containerAllSeries.classList.add("hidden");
+    titleFavorite.classList.add("hidden");
+    containerFavoriteSeries.classList.add("hidden");
+    form.reset();
+    localStorage.clear();
+}
+
+resetButton.addEventListener("click", handleClickReset)
+
 
   
    
