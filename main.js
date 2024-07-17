@@ -131,14 +131,6 @@ function handleSearchClick (event){
 searchButton.addEventListener("click", handleSearchClick);
 
 
-/*boton de reset
-cuando la usuaria haga click en reset.
-
--se eliminan:
-series favoritas
-los resultados
-el input*/
-
 
 function handleClickReset(event) {
     event.preventDefault();
