@@ -101,13 +101,14 @@ recojo el valor de la serie eliminada
 la elimino de mi array*/
 
 function handleClickClose(event) {
-  const idSerieToRemove = event.target.id;
+  const idSerieToRemove = parseInt(event.target.id);
 
-  const serieIndex = favoriteSeries.findIndex((favSerie) => {
+  const serie = favoriteSeries.findIndex((favSerie) => {
     return idSerieToRemove === favSerie.mal_id;
   });
+  console.log(serie);
 
-  favoriteSeries.splice(serieIndex, 1);
+  favoriteSeries.splice(serie, 1);
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
 }
