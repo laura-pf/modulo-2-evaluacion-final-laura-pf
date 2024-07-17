@@ -109,7 +109,8 @@ function handleClickClose(event) {
   }
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
-  //coger el contenedor por el id
+  const containerSerieResults = document.getElementById(idSerieToRemove);
+  containerSerieResults.classList.remove("colorFav");
 }
 
 function handleSearchClick(event) {
