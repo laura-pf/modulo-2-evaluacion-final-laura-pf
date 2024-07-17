@@ -103,8 +103,13 @@ function handleClickClose(event) {
   });
 
   favoriteSeries.splice(IndexFavSerie, 1);
+  if (favoriteSeries.length === 0) {
+    titleFavorite.classList.add("hidden");
+    containerFavoriteSeries.classList.add("hidden");
+  }
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
+  //coger el contenedor por el id
 }
 
 function handleSearchClick(event) {
