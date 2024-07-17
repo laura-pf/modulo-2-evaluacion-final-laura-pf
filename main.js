@@ -109,7 +109,7 @@ function handleClickClose(event) {
 
   favoriteSeries.splice(serieIndex, 1);
 
-  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, true);
+  renderSeries(favoriteSeries, containerFavoriteSeries, true);
 }
 
 function handleSearchClick(event) {
