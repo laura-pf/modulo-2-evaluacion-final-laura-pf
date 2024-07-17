@@ -95,20 +95,14 @@ function handleClickFavorite(event) {
     localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
   }
 }
-
-/* cuando hago click en el boton x:
-recojo el valor de la serie eliminada
-la elimino de mi array*/
-
 function handleClickClose(event) {
   const idSerieToRemove = parseInt(event.target.id);
 
-  const serie = favoriteSeries.findIndex((favSerie) => {
+  const IndexFavSerie = favoriteSeries.findIndex((favSerie) => {
     return idSerieToRemove === favSerie.mal_id;
   });
-  console.log(serie);
 
-  favoriteSeries.splice(serie, 1);
+  favoriteSeries.splice(IndexFavSerie, 1);
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
 }
