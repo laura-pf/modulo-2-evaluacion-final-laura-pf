@@ -32,7 +32,7 @@ if (seriesFavLocalSotrage) {
   titleFavorite.classList.remove("hidden");
   containerFavoriteSeries.classList.remove("hidden");
   favoriteSeries = seriesFavLocalSotrage;
-  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, false);
+  renderSeries(seriesFavLocalSotrage, containerFavoriteSeries, true);
 }
 
 function renderSeries(series, container, isFavorite) {
@@ -48,11 +48,11 @@ function renderSeries(series, container, isFavorite) {
     container.innerHTML += `
         <div class= "series 
         ${
-          isFavorite ? "js-containerOneFavSerie" : "js - containerOneSerie"
+          isFavorite ? "js-containerOneFavSerie" : "js-containerOneSerie"
         } " id="${serie.mal_id}" >
             <img class="img" src="${image}" alt="$${serie.title}"> 
             <h3 class="title__series">${serie.title}</h3> 
-            ${isFavorite ? `<button>X</button>` : ""}
+            ${isFavorite ? `<button class="close__button">X</button>` : ""}
         </div>
       `;
   }
@@ -102,7 +102,7 @@ function handleSearchClick(event) {
         const series = data.data;
         seriesList = series;
 
-        renderSeries(seriesList, containerAllSeries);
+        renderSeries(seriesList, containerAllSeries, false);
       });
 
     titleResults.classList.remove("hidden");
