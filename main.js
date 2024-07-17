@@ -106,6 +106,7 @@ function handleClickClose(event) {
   if (favoriteSeries.length === 0) {
     titleFavorite.classList.add("hidden");
     containerFavoriteSeries.classList.add("hidden");
+    localStorage.clear();
   }
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
