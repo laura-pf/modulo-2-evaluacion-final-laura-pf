@@ -1,146 +1,136 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .body {
-    background-color: white;
-  
+  background-color: white;
 }
 
-
-
-.title__h1{
-    color: rgb(241, 49, 145);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    margin: 50px 100px;
-    margin-top: 80px
+.title__h1 {
+  color: rgb(241, 49, 145);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  margin: 50px 100px;
+  margin-top: 80px;
 }
 
 .form {
-    display: flex;
-    margin-left: 90px;
-    margin-bottom: 80px;
-    gap: 10px;
+  display: flex;
+  margin-left: 90px;
+  margin-bottom: 80px;
+  gap: 10px;
 }
 
-
 .input__search {
-    flex-grow: 1;
-    padding:10px ;
-    border-radius: 6px;
-    margin-right: 20px;
-    background-color: white;
-    border: 3px solid rgb(241, 49, 145);
-    color: rgb(241, 49, 145) ;
-    font-size: 20px;
-    margin-bottom: 20px;
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 6px;
+  margin-right: 20px;
+  background-color: white;
+  border: 3px solid rgb(241, 49, 145);
+  color: rgb(241, 49, 145);
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .button {
-    background-color: rgb(241, 49, 145);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    height: 50px;
-    width: 80px;
-    margin-right: 50px;
-    cursor: pointer;
-   
-   
+  background-color: rgb(241, 49, 145);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  height: 50px;
+  width: 80px;
+  margin-right: 50px;
+  cursor: pointer;
 }
 
-
-
-   
-   
-    
-   
 .container__titleSeries {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
-
 
 .img {
-    width: 181px;
-    height: 200px ;
+  width: 181px;
+  height: 200px;
 }
 
-.container__series{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-   justify-content: center;
-    align-items: center;
-    
-    padding: 30px;
-    margin: 5px;
-    border: 7px solid rgb(241, 49, 145);
+.container__series {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+  margin: 5px;
+  border: 7px solid rgb(241, 49, 145);
 }
 
-.container__seriesfav{
-    display: flex;
-        flex-direction: column;
-        gap: 20px;
-    
-        padding: 50px;
-        margin: 5px;
-        border: 7px solid rgb(241, 49, 145);
+.container__seriesfav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
+  padding: 50px;
+  margin: 5px;
+  border: 7px solid rgb(241, 49, 145);
 }
 
 .series {
-    width: 200px;
-    
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 .title__results {
-    text-align: center;
-    color: rgb(241, 49, 145);
-    font-family: Arial, Helvetica, sans-serif;
-    
+  text-align: center;
+  color: rgb(241, 49, 145);
+  font-family: Arial, Helvetica, sans-serif;
 }
- 
 
 .section__series {
-    display: flex;
-    gap:80px;
-    
-    align-items: flex-start;
-   
-    flex-direction: row;
-    margin-left: 100px;
+  display: flex;
+  gap: 80px;
 
-   
+  align-items: flex-start;
+
+  flex-direction: row;
+  margin-left: 100px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .colorFav {
-    border: solid 10px rgb(241, 49, 145);
-    color: rgb(241, 49, 145);
-
+  border: solid 10px rgb(241, 49, 145);
+  color: rgb(241, 49, 145);
 }
 
-.title__series{
-    text-align: center;
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+.title__series {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .empty__input {
-    color: rgb(241, 49, 145);
-    font-family: arial;
-    font-size: 30px;
+  color: rgb(241, 49, 145);
+  font-family: arial;
+  font-size: 30px;
+}
 
+.close__button {
+  border: 1px solid white;
+  padding: 8px;
+  background-color: rgb(241, 49, 145);
+  color: white;
+  width: 30px;
+  margin-top: 7px;
+  cursor: pointer;
 }
