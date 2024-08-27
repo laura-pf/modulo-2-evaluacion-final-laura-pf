@@ -71,46 +71,67 @@ function renderSeries(series, container, isFavorite) {
 
 function handleClickFavorite(event) {
   const clickFavorite = event.currentTarget;
-  clickFavorite.classList.add("colorFav");
-  titleFavorite.classList.remove("hidden");
-  containerFavoriteSeries.classList.remove("hidden");
+  const idClickFavorite = parseInt(clickFavorite.id);
+  const serieSelected = seriesList.find(
+    (serie) => serie.mal_id === idClickFavorite
+  );
 
-  const idClickFavorite = parseInt(event.currentTarget.id);
+  // Verifica si la serie ya está en favoritos
+  const indexSerieFavorites = favoriteSeries.findIndex(
+    (favoriteSerie) => favoriteSerie.mal_id === idClickFavorite
+  );
 
-  const serieSelected = seriesList.find((serie) => {
-    return idClickFavorite === serie.mal_id;
-  });
-
-  const indexSerieFavorites = favoriteSeries.findIndex((favoriteSerie) => {
-    return idClickFavorite === favoriteSerie.mal_id;
-  });
-
-  //si no existe como favorita, añado serie
   if (indexSerieFavorites === -1) {
+    // Añadir a favoritos
     favoriteSeries.push(serieSelected);
-    renderSeries(favoriteSeries, containerFavoriteSeries, true);
-    localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
+    clickFavorite.classList.add("colorFav");
+  } else {
+    // Eliminar de favoritos
+    favoriteSeries.splice(indexSerieFavorites, 1);
+    clickFavorite.classList.remove("colorFav");
   }
+
+  // Renderiza la lista de favoritos actualizada
+  if (favoriteSeries.length > 0) {
+    titleFavorite.classList.remove("hidden");
+    containerFavoriteSeries.classList.remove("hidden");
+    localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
+  } else {
+    titleFavorite.classList.add("hidden");
+    containerFavoriteSeries.classList.add("hidden");
+  }
+
+  renderSeries(favoriteSeries, containerFavoriteSeries, true);
 }
+
 function handleClickClose(event) {
+  // Obtiene el ID de la serie que se va a eliminar
   const idSerieToRemove = parseInt(event.target.id);
 
-  const IndexFavSerie = favoriteSeries.findIndex((favSerie) => {
-    return idSerieToRemove === favSerie.mal_id;
-  });
+  // Filtra la serie para eliminarla de la lista de favoritos
+  favoriteSeries = favoriteSeries.filter(
+    (favSerie) => favSerie.mal_id !== idSerieToRemove
+  );
 
-  favoriteSeries.splice(IndexFavSerie, 1);
+  // Si la lista de favoritos queda vacía, oculta el contenedor
   if (favoriteSeries.length === 0) {
     titleFavorite.classList.add("hidden");
     containerFavoriteSeries.classList.add("hidden");
     localStorage.removeItem("listFavSeries");
   } else {
+    titleFavorite.classList.remove("hidden");
+    containerFavoriteSeries.classList.remove("hidden");
     localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
   }
 
+  // Vuelve a renderizar las series favoritas
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
+
+  // Remueve la clase de favorito de la serie en el contenedor de todas las series
   const containerSerieResults = document.getElementById(idSerieToRemove);
-  containerSerieResults.classList.remove("colorFav");
+  if (containerSerieResults) {
+    containerSerieResults.classList.remove("colorFav");
+  }
 }
 
 function handleSearchClick(event) {
@@ -119,8 +140,14 @@ function handleSearchClick(event) {
   message.innerHTML = "";
 
   if (!value) {
+    containerAllSeries.innerHTML = "";
+    titleFavorite.classList.add("hidden");
+    containerFavoriteSeries.classList.add("hidden");
+    containerAllSeries.classList.add("hidden");
+    titleResults.classList.add("hidden");
+
     message.innerHTML = `
-        <h3> Por favor, introduce una serie de anime </h3>`;
+        <h3 class="message-introduceSerie"> Por favor, introduce una serie de anime </h3> `;
   } else {
     fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
       .then((response) => response.json())
