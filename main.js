@@ -37,11 +37,16 @@ function renderSeries(series, container, isFavorite) {
       image = serie.images.jpg.image_url;
     }
 
+    const isFavoriteClass = favoriteSeries.some(
+      (fav) => fav.mal_id === serie.mal_id
+    )
+      ? "colorFav"
+      : "";
+
     container.innerHTML += `
-        <div class= "series 
-        ${
-          isFavorite ? "js-containerOneFavSerie" : "js-containerOneSerie"
-        } " id="${serie.mal_id}" >
+      <div class= "series ${
+        isFavorite ? "js-containerOneFavSerie" : "js-containerOneSerie"
+      } ${isFavoriteClass}" id="${serie.mal_id}" >
             <img class="img" src="${image}" alt="$${serie.title}"> 
             <h3 class="title__series">${serie.title}</h3> 
             ${
