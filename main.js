@@ -45,6 +45,9 @@ function renderSeries(series, container, isFavorite) {
       image = serie.images.jpg.image_url;
     }
 
+    //añadir a cada tarjeta de resultado el tipo de la serie
+    //si el type esta en el array predefinido. el array tiene dos strings "OVA" y "SPECIAL" debe aparecer en la tarjeta la palabra "Historia especial"
+
     container.innerHTML += `
         <div class= "series 
         ${
@@ -52,6 +55,12 @@ function renderSeries(series, container, isFavorite) {
         } " id="${serie.mal_id}" >
             <img class="img" src="${image}" alt="$${serie.title}"> 
             <h3 class="title__series">${serie.title}</h3> 
+            <p>Emisión: ${serie.type}</p>
+            ${
+              serie.type.includes("OVA") || serie.type.includes("Special")
+                ? `<p>Historia especial</p> `
+                : ""
+            }
             ${
               isFavorite
                 ? `<button id="${serie.mal_id}" class="close__button js-closeButton">X</button>`
