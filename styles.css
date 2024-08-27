@@ -56,6 +56,7 @@
 .img {
   width: 181px;
   height: 200px;
+  object-fit: cover;
 }
 
 .container__series {

@@ -1,13 +1,5 @@
 "use strict";
 
-/* BUSQUEDA de serie anime: dos partes:
-1. Un campo de texto y un botón para buscar series por su título.
-    -Cuando la usuaria haga click en el botón buscar.
-    -recoge la informacion de las series
-    -las muestra en el html 
-
-2. Un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.*/
-
 const searchButton = document.querySelector(".js-searchButton");
 const inputSearch = document.querySelector(".js-inputSearch");
 const containerAllSeries = document.querySelector(".js-containerSeries");
@@ -106,7 +98,9 @@ function handleClickClose(event) {
   if (favoriteSeries.length === 0) {
     titleFavorite.classList.add("hidden");
     containerFavoriteSeries.classList.add("hidden");
-    localStorage.clear();
+    localStorage.removeItem("listFavSeries");
+  } else {
+    localStorage.setItem("listFavSeries", JSON.stringify(favoriteSeries));
   }
 
   renderSeries(favoriteSeries, containerFavoriteSeries, true);
@@ -119,24 +113,34 @@ function handleSearchClick(event) {
   const value = inputSearch.value;
   message.innerHTML = "";
 
-  if (value === "" || !isNaN(value)) {
+  if (!value) {
     message.innerHTML = `
-        <h2> Por favor, introduce una serie de anime </h2>`;
+        <h3> Por favor, introduce una serie de anime </h3>`;
   } else {
     fetch(`https://api.jikan.moe/v4/anime?q=${value}`)
       .then((response) => response.json())
       .then((data) => {
         const series = data.data;
-        seriesList = series;
 
+        if (series.length === 0) {
+          containerAllSeries.classList.add("hidden");
+          titleResults.classList.add("hidden");
+          message.innerHTML = `<h3>No se encontraron series. Por favor, introduce un nombre válido de anime</h3>`;
+          return;
+        }
+
+        seriesList = series;
         renderSeries(seriesList, containerAllSeries, false);
+      })
+      .catch((error) => {
+        console.error("Error fetching anime:", error);
+        message.innerHTML = `<h3>Error al buscar series. Por favor, intenta de nuevo más tarde.</h3>`;
       });
 
     titleResults.classList.remove("hidden");
     containerAllSeries.classList.remove("hidden");
   }
 }
-
 searchButton.addEventListener("click", handleSearchClick);
 
 function handleClickReset(event) {
